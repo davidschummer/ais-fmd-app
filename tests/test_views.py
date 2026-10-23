@@ -404,6 +404,23 @@ def test_planner_inputs_accept_edge_values(seeded_db, use_db):
             assert_clean(app, f"Planner with {key}={value}")
 
 
+
+def test_forecast_inputs_accept_edge_values(seeded_db, use_db):
+    """Zero members and a zero dues rate must not break the forecast or backtest."""
+    use_db(seeded_db)
+    app = run_view(VIEWS / "Forecast.py")
+    assert_clean(app, "Forecast on first render")
+    assert app.number_input, "Forecast renders no dues inputs"
+
+    for index in range(len(app.number_input)):
+        app = run_view(VIEWS / "Forecast.py")
+        app = app.number_input[index].set_value(0).run()
+        assert_clean(app, f"Forecast with input {index} at zero")
+
+    app = run_view(VIEWS / "Forecast.py")
+    app = app.toggle[0].set_value(False).run()
+    assert_clean(app, "Forecast mixing seasons")
+
 # --- Pebble consolidation: hubs ----------------------------------------------
 
 HUB_VIEWS = {
@@ -412,6 +429,7 @@ HUB_VIEWS = {
     "AssistantHub.py": ("assistant_hub", ["Assistant", "Help"]),
     "AlertsHub.py": ("alerts_hub", ["Alerts & Reports", "Data Quality"]),
     "SettingsHub.py": ("settings_hub", ["Officer Access", "Audit Log"]),
+    "PlannerHub.py": ("planner_hub", ["Forecast", "Scenario"]),
 }
 
 

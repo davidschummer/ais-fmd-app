@@ -78,7 +78,7 @@ PAGES = {
         ("ais_fmd/views/Dashboard.py", "Dashboard", ":material/analytics:", auth.Role.MEMBER),
         ("ais_fmd/views/DuesHub.py", "Dues", ":material/groups:", auth.Role.MEMBER),
         ("ais_fmd/views/TransactionsHub.py", "Transactions", ":material/table_rows:", auth.Role.MEMBER),
-        ("ais_fmd/views/Planner.py", "Planner", ":material/insights:", auth.Role.TREASURER),
+        ("ais_fmd/views/PlannerHub.py", "Planner", ":material/insights:", auth.Role.TREASURER),
         ("ais_fmd/views/AssistantHub.py", "Assistant", ":material/smart_toy:", auth.Role.MEMBER),
         ("ais_fmd/views/Officer.py", "My Committee", ":material/badge:", auth.Role.OFFICER),
         # ("ais_fmd/views/Reimbursements.py", "Reimbursements", ":material/receipt_long:", auth.Role.MEMBER),  # MVP: deferred
